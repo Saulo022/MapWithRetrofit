@@ -18,6 +18,8 @@ import com.saulo.mapwithretrofit.presentation.screens.datepicker.SelectableDates
 import com.saulo.mapwithretrofit.presentation.screens.datepicker.SimpleDatePicker
 import com.saulo.mapwithretrofit.presentation.screens.home.SearchScreen
 import com.saulo.mapwithretrofit.presentation.screens.home.SearchViewModel
+import com.saulo.mapwithretrofit.presentation.screens.matrix.MatrixScreen
+import com.saulo.mapwithretrofit.presentation.screens.matrix.MatrixViewModel
 import com.saulo.mapwithretrofit.ui.theme.MapWithRetrofitTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val searchViewModel: SearchViewModel by viewModels()
+
+    private val matrixViewModel: MatrixViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +39,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SearchScreen(searchViewModel = searchViewModel)
+                    //SearchScreen(searchViewModel = searchViewModel)
                     //ExposedDropdownMenuScreen()
                     //DatePickerScreen()
                     //SimpleDatePicker()
                     //SelectableDatesScreen()
                     //DatePickerDialogScreen()
+                    MatrixScreen(matrixViewModel = matrixViewModel)
                 }
             }
         }

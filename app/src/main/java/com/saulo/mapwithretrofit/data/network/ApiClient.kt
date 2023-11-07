@@ -1,8 +1,13 @@
 package com.saulo.mapwithretrofit.data.network
 
+import com.saulo.mapwithretrofit.data.network.response.MatrixResponse
+import com.saulo.mapwithretrofit.data.network.response.MatrixxResponseX
 import com.saulo.mapwithretrofit.data.network.response.RouteResponse
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ApiClient {
@@ -15,4 +20,10 @@ interface ApiClient {
         @Query("boundary.circle.radius") radius: Int,
         @Query("boundary.country") country: String
     ) : Response<RouteResponse>
+
+    @Headers("Authorization: 5b3ce3597851110001cf6248430006dcbe134f72aea0f41e3b68d35b")
+    @POST("/v2/matrix/driving-car")
+    suspend fun optimisedRoute(@Body matrix: Matrix) : Response<MatrixxResponseX>
 }
+
+data class Matrix(val locations: List<List<Double>>)
