@@ -1,6 +1,7 @@
 package com.saulo.mapwithretrofit.data.network
 
 import com.saulo.mapwithretrofit.data.network.response.Feature
+import com.saulo.mapwithretrofit.data.network.response.Features
 import javax.inject.Inject
 
 class ApiRepository @Inject constructor(private val api: ApiService){
@@ -12,5 +13,9 @@ class ApiRepository @Inject constructor(private val api: ApiService){
 
     suspend fun doOptimisedRoute(matrix: Matrix): List<List<Double>>{
         return api.doOptimisedRoute(matrix)
+    }
+
+    suspend fun doRoute(apiKey: String, start: String, end: String): List<Features> {
+        return api.doRoute(apiKey, start, end)
     }
 }

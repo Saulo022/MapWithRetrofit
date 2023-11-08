@@ -1,5 +1,6 @@
 package com.saulo.mapwithretrofit.data.network
 
+import com.saulo.mapwithretrofit.data.network.response.GetRouteResponse
 import com.saulo.mapwithretrofit.data.network.response.MatrixResponse
 import com.saulo.mapwithretrofit.data.network.response.MatrixxResponseX
 import com.saulo.mapwithretrofit.data.network.response.RouteResponse
@@ -24,6 +25,14 @@ interface ApiClient {
     @Headers("Authorization: 5b3ce3597851110001cf6248430006dcbe134f72aea0f41e3b68d35b")
     @POST("/v2/matrix/driving-car")
     suspend fun optimisedRoute(@Body matrix: Matrix) : Response<MatrixxResponseX>
+
+    @GET("/v2/directions/driving-car")
+    suspend fun getRoute(
+        @Query("api_key") apiKey: String,
+        @Query("start") start: String,
+        @Query("end") end: String
+    ): Response<GetRouteResponse>
+
 }
 
 data class Matrix(val locations: List<List<Double>>)

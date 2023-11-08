@@ -1,6 +1,7 @@
 package com.saulo.mapwithretrofit.data.network
 
 import com.saulo.mapwithretrofit.data.network.response.Feature
+import com.saulo.mapwithretrofit.data.network.response.Features
 import com.saulo.mapwithretrofit.data.network.response.MatrixResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,4 +24,13 @@ class ApiService @Inject constructor(private val apiClient: ApiClient) {
             response.body()?.durations ?: emptyList()
         }
     }
+
+    suspend fun doRoute(apiKey: String, start: String, end: String) : List<Features> {
+        return withContext(Dispatchers.IO){
+            val response = apiClient.getRoute(apiKey, start, end)
+            response.body()?.features ?: emptyList()
+        }
+    }
+
+
 }
